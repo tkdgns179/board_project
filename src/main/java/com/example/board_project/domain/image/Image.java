@@ -3,6 +3,7 @@ package com.example.board_project.domain.image;
 import com.example.board_project.domain.board.Board;
 import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,12 +24,13 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "image_id")
     private int id;
 
     private String postImageUrl;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "boardId")
+    @JoinColumn(name = "board_id")
     private Board board;
 
     private LocalDateTime createDate;

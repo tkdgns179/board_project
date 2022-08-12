@@ -5,10 +5,11 @@ import com.example.board_project.domain.board.BoardRepository;
 import com.example.board_project.domain.user.User;
 import com.example.board_project.web.dto.board.BoardDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.Optional;
 
 @Service
@@ -30,4 +31,11 @@ public class BoardService {
         return boardEntity;
     }
 
+    @Transactional
+    public Page<Board> getAllBoard(Pageable pageable) {
+        return boardRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Board getOneBoard(int id) { return boardRepository.findById(id); }
 }

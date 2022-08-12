@@ -1,6 +1,8 @@
 package com.example.board_project.domain.user;
 
 import com.example.board_project.domain.board.Board;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,18 +31,22 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @Column(length = 20, unique = true)
     private String username;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
 //    private String name;
 //    @Column(nullable = false)
     private String email;
     private boolean isEnabled;
 
+    @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user")
     private List<Board> boards;
 

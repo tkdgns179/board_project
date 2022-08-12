@@ -17,8 +17,10 @@ public class ImageService {
 
     @Transactional
     public void saveImages(String[] images, int id) {
-        for(String image : images) {
-            imageRepository.insertImage(image, id);
+        if (images != null) {
+            for(String image : images) {
+                imageRepository.insertImage(image, id);
+            }
         }
     }
 }
